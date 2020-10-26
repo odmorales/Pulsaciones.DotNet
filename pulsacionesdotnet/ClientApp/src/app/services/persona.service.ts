@@ -31,5 +31,5 @@ export class PersonaService {
             tap(_ => this.handleErrorService.log('datos enviados')),
             catchError(this.handleErrorService.handleError<Persona>('Registrar Persona', null))
         );
-}
+} 
 }

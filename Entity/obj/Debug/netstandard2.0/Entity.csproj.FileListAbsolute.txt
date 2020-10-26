@@ -1,0 +1,8 @@
+C:\Users\oscar\Proyectos Web\PulsacionesDonet\Entity\bin\Debug\netstandard2.0\Entity.deps.json
+C:\Users\oscar\Proyectos Web\PulsacionesDonet\Entity\bin\Debug\netstandard2.0\Entity.dll
+C:\Users\oscar\Proyectos Web\PulsacionesDonet\Entity\bin\Debug\netstandard2.0\Entity.pdb
+C:\Users\oscar\Proyectos Web\PulsacionesDonet\Entity\obj\Debug\netstandard2.0\Entity.csprojAssemblyReference.cache
+C:\Users\oscar\Proyectos Web\PulsacionesDonet\Entity\obj\Debug\netstandard2.0\Entity.AssemblyInfoInputs.cache
+C:\Users\oscar\Proyectos Web\PulsacionesDonet\Entity\obj\Debug\netstandard2.0\Entity.AssemblyInfo.cs
+C:\Users\oscar\Proyectos Web\PulsacionesDonet\Entity\obj\Debug\netstandard2.0\Entity.dll
+C:\Users\oscar\Proyectos Web\PulsacionesDonet\Entity\obj\Debug\netstandard2.0\Entity.pdb
