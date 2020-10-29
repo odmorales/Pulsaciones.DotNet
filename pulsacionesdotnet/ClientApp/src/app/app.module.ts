@@ -13,6 +13,8 @@ import { PersonaConsultaComponent } from './pulsacion/persona-consulta/persona-c
 import { PersonaRegistroComponent } from './pulsacion/persona-registro/persona-registro.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PersonaService } from './services/persona.service';
+import { PersonaModificarComponent } from './Pulsacion/persona-modificar/persona-modificar.component';
+import { PersonaEliminarComponent } from './Pulsacion/persona-eliminar/persona-eliminar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { PersonaService } from './services/persona.service';
     CounterComponent,
     FetchDataComponent,
     PersonaConsultaComponent,
-    PersonaRegistroComponent
+    PersonaRegistroComponent,
+    PersonaModificarComponent,
+    PersonaEliminarComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

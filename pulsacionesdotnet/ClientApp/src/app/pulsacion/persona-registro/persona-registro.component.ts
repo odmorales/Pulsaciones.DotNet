@@ -9,11 +9,11 @@ import { PersonaService } from '../../services/persona.service';
 })
 export class PersonaRegistroComponent implements OnInit {
 
-  persona:  Persona;
+  persona: Persona;
   constructor(private personaService: PersonaService) { }
-
+  
   ngOnInit() {
-    this.persona= new  Persona();
+    this.persona = new Persona();
   }
 
   add() {

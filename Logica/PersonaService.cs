@@ -43,8 +43,20 @@ namespace Logica {
 
                 return $"Error de la Aplicación: {e.Message}";
             } finally { _conexion.Close (); }
-
         }
+        
+        public ModificarPersonaResponse Modificar (Persona persona) {
+            try {
+                persona.CalcularPulsaciones ();
+                _conexion.Open ();
+                _repositorio.Modificar (persona);
+                _conexion.Close ();
+                return new ModificarPersonaResponse (persona);
+            } catch (Exception e) {
+                return new ModificarPersonaResponse ($"Error de la Aplicacion: {e.Message}");
+            } finally { _conexion.Close (); }
+        }
+
         public Persona BuscarxIdentificacion(string identificacion)
         {
             _conexion.Open();
@@ -66,4 +78,18 @@ namespace Logica {
         public string Mensaje { get; set; }
         public Persona Persona { get; set; }
     }
+    public class ModificarPersonaResponse {
+        public ModificarPersonaResponse (Persona persona) {
+            Error = false;
+            Persona = persona;
+        }
+        public ModificarPersonaResponse (string mensaje) {
+            Error = true;
+            Mensaje = mensaje;
+        }
+        public bool Error { get; set; }
+        public string Mensaje { get; set; }
+        public Persona Persona { get; set; }
+    }
+    
 }
