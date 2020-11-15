@@ -53,7 +53,6 @@ export class PersonaService {
   }
   delete(persona: Persona| string): Observable<string> {
     const id = typeof persona === 'string' ? persona : persona.identificacion;
-    
     return this.http.delete<string>(this.baseUrl + 'api/Persona/'+id).
     pipe(
       tap(_=> this.handleErrorService.log('datos enviados')),

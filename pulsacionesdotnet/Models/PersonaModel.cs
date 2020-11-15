@@ -1,18 +1,38 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Threading.Tasks;
 using Entity;
+using  System.ComponentModel.DataAnnotations;
 
 namespace pulsacionesdotnet.Models {
 
     public class PersonaInputModel {
+
+        [Required (ErrorMessage  =  "La identificacion es requerida")]
         public string Identificacion { get; set; }
+
+        [Required (ErrorMessage  =  "El nombre  es requerida")]
         public string Nombre { get; set; }
+
+        [Range (1,  99,  ErrorMessage  =  "La edad debe estar en un rango de 1 a 99")]
         public int Edad { get; set; }
+
+        [SexoValidacion( ErrorMessage="El Sexo de ser F o M")]
         public string Sexo { get; set; }
     }
 
+    public class SexoValidacion : ValidationAttribute {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext){
+            if ((value.ToString().ToUpper() == "M") || (value.ToString().ToUpper() == "F")){
+                return ValidationResult.Success;
+            }
+            else{
+                return new ValidationResult(ErrorMessage);
+            }
+        }
+    }
     public class PersonaViewModel : PersonaInputModel {
         public PersonaViewModel () {
 
@@ -26,7 +46,7 @@ namespace pulsacionesdotnet.Models {
         }
         public decimal Pulsacion { get; set; }
     }
-    public class PersonaUpdateModel{
+    public class PersonaUpdateModel {
 
         public string Nombre { get; set; }
         public int Edad { get; set; }

@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO.Pipes;
+using System.Security.Permissions;
 using Datos;
 using Entity;
 
@@ -12,12 +15,19 @@ namespace Logica {
             _repositorio = new PersonaRepository (_conexion);
         }
         public GuardarPersonaResponse Guardar (Persona persona) {
+            
             try {
-                persona.CalcularPulsaciones ();
-                _conexion.Open ();
-                _repositorio.Guardar (persona);
-                _conexion.Close ();
-                return new GuardarPersonaResponse (persona);
+                Persona personaBuscar = new Persona();
+                personaBuscar = BuscarxIdentificacion (persona.Identificacion);
+                if (personaBuscar != null) {
+                    return new GuardarPersonaResponse ("La persona ya esta registrada");
+                } else {
+                    persona.CalcularPulsaciones ();
+                    _conexion.Open ();
+                    _repositorio.Guardar (persona);
+                    _conexion.Close ();
+                    return new GuardarPersonaResponse (persona);
+                }
             } catch (Exception e) {
                 return new GuardarPersonaResponse ($"Error de la Aplicacion: {e.Message}");
             } finally { _conexion.Close (); }
@@ -44,7 +54,7 @@ namespace Logica {
                 return $"Error de la Aplicación: {e.Message}";
             } finally { _conexion.Close (); }
         }
-        
+
         public ModificarPersonaResponse Modificar (Persona persona) {
             try {
                 persona.CalcularPulsaciones ();
@@ -57,11 +67,10 @@ namespace Logica {
             } finally { _conexion.Close (); }
         }
 
-        public Persona BuscarxIdentificacion(string identificacion)
-        {
-            _conexion.Open();
-            Persona persona = _repositorio.BuscarPorIdentificacion(identificacion);
-            _conexion.Close();
+        public Persona BuscarxIdentificacion (string identificacion) {
+            _conexion.Open ();
+            Persona persona = _repositorio.BuscarPorIdentificacion (identificacion);
+            _conexion.Close ();
             return persona;
         }
     }
@@ -91,5 +100,5 @@ namespace Logica {
         public string Mensaje { get; set; }
         public Persona Persona { get; set; }
     }
-    
+
 }
